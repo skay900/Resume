@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resume">
+
+	<!-- =====================================================================================================
+	    										이력서 등록
+	     ===================================================================================================== -->
+	<!-- 인적사항 등록 -->
+	<insert id="insertProfile" parameterType="com.spring.resume.Resume">
+		INSERT INTO s_profile (resumeNum, userId, subject, createDate, originalFilename, saveFilename)
+						VALUES(s_PROFILE_SEQ.NEXTVAL, #{userId}, #{subject}, SYSDATE, #{originalFilename, jdbcType=VARCHAR}, #{saveFilename, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 희망근무조건 -->
+	<insert id="insertHope" parameterType="com.spring.resume.Resume">
+		INSERT INTO s_hope (userId, detail1, detail2, gestalt, place, wantSalary)
+						VALUES(#{userId}, #{detail1}, #{detail2}, #{gestalt}, #{place}, #{wantSalary})
+	</insert>
+	
+	<!-- 학력 -->
+	<insert id="insertEducation" parameterType="com.spring.resume.EducationVO">
+		INSERT INTO s_education (eduNum, userId, schoolGrade, schoolName, major, score, totalScore, eduInDate, eduOutDate, graduDivision) 
+						VALUES(s_EDUCATION_SEQ.NEXTVAL, #{userId}, #{schoolGrade, jdbcType=VARCHAR}, #{schoolName, jdbcType=VARCHAR}, #{major, jdbcType=VARCHAR}
+								, #{score, jdbcType=VARCHAR}, #{totalScore, jdbcType=VARCHAR}, #{eduInDate, jdbcType=VARCHAR}, #{eduOutDate, jdbcType=VARCHAR}, #{graduDivision, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 경력 -->
+	<insert id="insertCareer" parameterType="com.spring.resume.CareerVO">
+		INSERT INTO s_career (careerNum, userId, compName, deptName, rank, duty, careerInDate, careerOutDate, salary) 
+					VALUES (s_CAREER_SEQ.NEXTVAL, #{userId}, #{compName, jdbcType=VARCHAR}, #{deptName, jdbcType=VARCHAR}, #{rank, jdbcType=VARCHAR}
+					, #{duty, jdbcType=VARCHAR}, #{careerInDate, jdbcType=VARCHAR}, #{careerOutDate, jdbcType=VARCHAR}, #{salary, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 자격증 -->
+	<insert id="insertLicense" parameterType="com.spring.resume.LicenseVO">
+		INSERT INTO s_license (licenseNum, userId, licenseName, licensePublish, licenseDate) 
+					VALUES (S_LICENSE_SEQ.NEXTVAL, #{userId}, #{licenseName, jdbcType=VARCHAR}, #{licensePublish, jdbcType=VARCHAR}, #{licenseDate, jdbcType=VARCHAR})
+	</insert>
+	
+	
+	<!-- =====================================================================================================
+ 										이력서 수정 시 이전 데이터 삭제
+		 ===================================================================================================== -->
+	 <delete id="deleteHope" parameterType="String">
+		DELETE FROM s_hope WHERE userId = #{userId}
+	 </delete>
+	 
+ 	 <delete id="deleteLicense" parameterType="String">
+		DELETE FROM s_license WHERE userId = #{userId}
+	 </delete>
+	 
+ 	 <delete id="deleteCareer" parameterType="String">
+		DELETE FROM s_career WHERE userId = #{userId}
+	 </delete>
+	 
+ 	 <delete id="deleteEducation" parameterType="String">
+		DELETE FROM s_education WHERE userId = #{userId}
+	 </delete>
+	 
+ 	 <delete id="deleteProfile" parameterType="String">
+		DELETE FROM s_profile WHERE userId = #{userId}
+	 </delete>
+	
+	
+	<!-- =====================================================================================================
+    										나의 이력서 불러오기
+    	 ===================================================================================================== -->
+	<!-- 유저정보, 프로파일, 희망근무조건 -->
+	<select id="readResume" resultType="com.spring.resume.Resume" parameterType="String">
+   		SELECT u.userId, u.password, u.userName, u.authority, u.birth, u.gender, u.email, u.phone, u.address
+				, p.subject, p.saveFilename, p.originalFilename
+				, h.gestalt, h.place, h.wantSalary, h.detail1, h.detail2
+		FROM s_user u, s_profile p, s_hope h
+		WHERE u.userId = p.userId(+)
+		AND u.userId = h.userId(+)
+        AND u.userId = #{userId}
+	</select>
+	
+	<!-- 학력 -->
+	<select id="readEducation" resultType="com.spring.resume.EducationVO" parameterType="String">
+   		SELECT u.userId, e.schoolGrade, e.schoolName, e.major, e.score, e.totalScore, e.eduInDate, e.eduOutDate, e.graduDivision
+   		FROM s_education e, s_user u
+   		WHERE e.userId = u.userId(+)
+   		AND u.userId = #{userId}
+        ORDER BY e.eduNum
+	</select>
+	
+	<!-- 경력 -->
+	<select id="readCareer" resultType="com.spring.resume.CareerVO" parameterType="String">
+   		SELECT u.userId, c.compName, c.deptName, c.rank, c.duty, c.careerInDate, c.careerOutDate, c.salary
+   		FROM s_career c, s_user u
+   		WHERE c.userId = u.userId(+)
+   		AND u.userId = #{userId}
+        ORDER BY c.careerNum
+	</select>
+	
+	<!-- 자격증 -->
+	<select id="readLicense" resultType="com.spring.resume.LicenseVO" parameterType="String">
+   		SELECT u.userId, l.licenseName, l.licensePublish, l.licenseDate
+   		FROM s_license l, s_user u
+   		WHERE l.userId = u.userId(+)
+   		AND u.userId = #{userId}
+        ORDER BY l.licenseNum
+	</select>
+	
+	<!-- 공통코드(대분류) 가져오기 -->
+	<select id="detail1List" resultType="com.spring.resume.Resume">
+		SELECT DISTINCT(detail1Code), detail1Name 
+		FROM s_category
+	</select>
+	
+	<!-- 공통코드(중분류) 가져오기 -->
+	<select id="detail2List" resultType="com.spring.resume.Resume" parameterType="String">
+		SELECT detail2Code, detail2Name
+		FROM s_category 
+		WHERE SUBSTR(detail2Code, 1, 3) = #{detail1Code}
+	</select>
+	
+	<!-- =====================================================================================================
+   										검색
+   		 ===================================================================================================== -->
+	<sql id="where-list">
+		<if test = "searchKey == 'userName'">
+			userName LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'subject'">
+			subject LIKE '%' || #{searchValue} || '%'
+		</if>
+		<if test="searchKey == 'created'">
+			TO_CHAR(createDate, 'YYYY-MM-DD') = #{searchValue}
+	          OR TO_CHAR(createDate, 'YYYYMMDD') = #{searchValue}
+		</if>
+	</sql>
+	
+	
+	<!-- =====================================================================================================
+   										이력서 카운트
+   		 ===================================================================================================== -->
+	<select id="dataCount" resultType="Integer" parameterType="map">
+		SELECT NVL(COUNT(p.resumeNum), 0) 
+		FROM s_profile p, s_user u
+       <where>
+          <if test="searchValue != null and searchValue != '' ">
+			   <include refid="where-list"/>
+		   </if>
+		   AND u.userId = p.userId
+	   </where>
+	</select>
+	
+	
+	<!-- =====================================================================================================
+   										전체 이력서 리스트
+   		 ===================================================================================================== -->
+	<select id="listResume" resultType="com.spring.resume.Resume"  parameterType="map">
+		SELECT * FROM (
+		    SELECT ROWNUM rnum, tb.* FROM (
+			     SELECT p.resumeNum, u.userName, u.birth, u.gender, p.subject, TO_CHAR(p.createDate, 'YYYY-MM-DD') AS createDate
+			        FROM s_user u, s_profile p
+	                <where>
+	                  	<if test="searchValue != null and searchValue != ''">
+	           		   		<include refid="where-list"/>
+	              		</if>
+	                AND u.userId = p.userId
+	                </where>
+	                ORDER BY p.resumeNum DESC
+		<![CDATA[
+		        ) tb WHERE ROWNUM <= #{end}
+			) WHERE rnum >= #{start}
+		]]>
+	</select>
+	
+	
+	<!-- =====================================================================================================
+   										이력서 상세보기
+   		 ===================================================================================================== -->
+	<!-- 유저 정보 -->
+	<select id="detailUser" resultType="com.spring.resume.Resume" parameterType="Integer">
+	    SELECT u.userName, u.birth, u.gender, u.email, u.phone, u.address
+	    		, u.userId
+				, p.resumeNum
+	    FROM s_user u, s_profile p
+	    WHERE u.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	</select>
+	
+	<!-- 프로파일 -->
+	<select id="detailProfile" resultType="com.spring.resume.Resume" parameterType="Integer">
+	    SELECT p.subject, p.saveFilename, p.originalFilename, p.createDate
+	    		, u.userId
+				, p.resumeNum
+	    FROM s_user u, s_profile p
+	    WHERE u.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	</select>
+	
+	<!-- 희망근무조건 -->
+	<select id="detailHope" resultType="com.spring.resume.Resume" parameterType="Integer">
+	    SELECT h.gestalt, h.place, h.wantSalary
+            , (SELECT DISTINCT(c.detail1Name)
+		        FROM s_category c, s_hope h, s_user u, s_profile p
+		        WHERE c.detail1Code = h.detail1
+		        AND h.userId = u.userId
+		        AND u.userId = p.userId
+		        AND c.detail1Code = h.detail1
+		        AND p.resumeNum = #{resumeNum}) detail1
+            , (SELECT c.detail2Name
+		        FROM s_category c, s_hope h, s_user u, s_profile p
+		        WHERE c.detail1Code = h.detail1
+		        AND h.userId = u.userId
+		        AND u.userId = p.userId
+		        AND c.detail2Code = h.detail2
+		        AND p.resumeNum = #{resumeNum}) detail2
+        	, u.userId
+			, p.resumeNum
+	    FROM s_user u, s_hope h, s_profile p
+	    WHERE u.userId = h.userId(+)
+	    AND h.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	</select>
+	
+	<!-- 학력 -->
+	<select id="detailEducation" resultType="com.spring.resume.EducationVO" parameterType="Integer">
+		SELECT e.schoolGrade, e.schoolName, e.major, e.score, e.totalScore, e.eduInDate, e.eduOutDate, e.graduDivision
+				, u.userId
+				, p.resumeNum
+	    FROM s_user u, s_education e, s_profile p
+	    WHERE u.userId = e.userId(+)
+	    AND e.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	    ORDER BY e.eduNum
+	</select>
+	
+	<!-- 경력 -->
+	<select id="detailCareer" resultType="com.spring.resume.CareerVO" parameterType="Integer">
+		SELECT c.compName, c.deptName, c.rank, c.duty, c.careerInDate, c.careerOutDate, c.salary
+				, u.userId
+				, p.resumeNum
+	    FROM s_user u, s_career c, s_profile p
+	    WHERE u.userId = c.userId(+)
+	    AND c.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	    ORDER BY c.careerNum
+	</select>
+	
+	<!-- 자격증 -->
+	<select id="detailLicense" resultType="com.spring.resume.LicenseVO" parameterType="Integer">
+		SELECT l.licenseName, l.licensePublish, l.licenseDate
+				, u.userId
+				, p.resumeNum
+	    FROM s_user u, s_license l, s_profile p
+	    WHERE u.userId = l.userId(+)
+	    AND l.userId = p.userId(+)
+	    AND p.resumeNum = #{resumeNum}
+	    ORDER BY l.licenseNum
+	</select>
+
+	
+</mapper>

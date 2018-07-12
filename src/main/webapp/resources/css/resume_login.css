@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.wrapContainer_login {
+	width: 99%;
+	height: 775px;
+	margin: 10px 10px;
+	padding-top: 20px;
+}
+
+.container_login {
+	width: 70%;
+	height: 50%;
+	margin: 0px auto;
+}

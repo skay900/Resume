@@ -1,0 +1,524 @@
+@charset "UTF-8";
+
+/* 전체 컨테이너 */
+.wrapContainer_create {
+	width: 99%;
+	height: 870px;
+	margin: 10px 10px;
+	padding-top: 20px;
+}
+
+.container_create {
+	width: 70%;
+	height: 100%;
+	margin: 0px auto;
+	background: #eeeeee grey lighten-3;
+}
+/* ---------------------------------------------- */
+
+
+/* 각 항목 헤더 */
+.header {
+	margin-top: 35px;
+	margin-bottom: 10px;
+	margin-left: 305px;
+}
+/* ---------------------------------------------- */
+
+
+/* 버튼 */
+button {
+	background: white;
+	border: none;
+}
+
+.wrapButton {
+	width: 1300px;
+	height: 130px;
+	margin: 5px auto;
+	padding-top: 20px;
+}
+/* ---------------------------------------------- */
+
+
+
+/* 인적사항 */
+.wrapProfile {
+	width: 1300px;
+	height: 235px;
+	margin: 5px auto;
+	margin-bottom: 50px;
+	background: white;
+	padding-top: 30px;
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+}
+
+.wrapRowProfile {
+	width: 1100px;
+	height: 208px;
+	float: left;
+	margin-left: 5px;
+}
+
+.rowProfile {
+	width: 1085px;
+	height: 90px;
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 3px;
+	display: flex;
+	text-align: center;
+}
+
+.wrapImageProfile {
+	width: 180px;
+	height: 208px;
+	float: right;
+	margin-right: 5px;
+}
+
+.imageProfile {
+	width: 115px;
+	height: 152px;
+	position: absolute;
+	margin-top: 8px;
+	margin-left: 13px;
+	text-align: center;
+}
+
+/* ---------------------------------------------- */
+
+
+/* 각 rowHeaderName */
+.rowHeaderNameName {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameBirth {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 13px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameGender {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 11px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameEmail {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 6px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNamePhone {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameAddr {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameEducation {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 11px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameSchool {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameMajor {
+	width: 190px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameScore {
+	width: 190px;
+	height: 20px;
+	text-align: center;
+	font-size: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	padding-right: 12px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameIn {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 3px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameOut {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 3px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameGraduation {
+	width: 80px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 2px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameCompName {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameDepart {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameRank {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameDuty {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameJoin {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 3px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameResi {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 3px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNamePay {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 3px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameLicense {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 10px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNamePublish {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 13px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameGet {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameDetail1 {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameDetail2 {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameGest {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNamePlace {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameWantPay {
+	width: 100px;
+	height: 20px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 8px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+
+.rowHeaderNameImage {
+	width: 100px;
+	height: 10px;
+	text-align: left;
+	font-size: 12px;
+	margin-left: 12px;
+	margin-top: 5px;
+	margin-bottom: 15px;
+	color: #8c8c8c;
+}
+/* ---------------------------------------------- */
+
+
+/* 학력 */
+.wrapEducation {
+	width: 1300px;
+	height: 130px;
+	margin: 0px auto;
+	background: white;
+	padding-top: 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+}
+
+
+.rowEducation {
+	width: 1220px;
+	height: 90px;
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 3px;
+	display: flex;
+	text-align: center;
+}
+/* ---------------------------------------------- */
+
+
+/* 경력 */
+.wrapCareer {
+	width: 1300px;
+	height: 130px;
+	margin: 0px auto;
+	background: white;
+	padding-top: 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+}
+
+
+.rowCareer {
+	width: 1220px;
+	height: 90px;
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 3px;
+	display: flex;
+	text-align: center;
+}
+/* ---------------------------------------------- */
+
+
+/* 자격증 */
+.wrapLicense {
+	width: 1300px;
+	height: 130px;
+	margin: 0px auto;
+	background: white;
+	padding-top: 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+}
+
+
+.rowLicense {
+	width: 1220px;
+	height: 90px;
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 3px;
+	display: flex;
+	text-align: center;
+}
+/* ---------------------------------------------- */
+
+
+/* 희망근무조건 */
+.wrapHope {
+	width: 1300px;
+	height: 130px;
+	margin: 0px auto;
+	background: white;
+	padding-top: 20px;
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+}
+
+
+.rowHope {
+	width: 1220px;
+	height: 90px;
+	float: left;
+	margin: 3px 3px 3px 3px;
+	padding: 3px;
+	display: flex;
+	text-align: center;
+}
+/* ---------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

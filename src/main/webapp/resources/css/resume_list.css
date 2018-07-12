@@ -1,0 +1,201 @@
+@charset "UTF-8";
+
+/* 전체 컨테이너 */
+.wrapContainer_list {
+	width: 99%;
+	height: 755px;
+	margin: 10px 10px;
+	padding-top: 20px;
+}
+
+.container_list {
+	width: 70%;
+	height: 100%;
+	margin: 0px auto;
+}
+/* ---------------------------------------------- */
+
+
+/* 구분, 검색 */
+.wrapSearch {
+	width: 100%;
+	height: 60px;
+	margin-top: 10px;
+	padding: 10px 3px 3px 3px;
+}
+
+.search {
+	width: 50%;
+	height: 40px;
+	float: left;
+}
+
+.countView {
+	width: 15%;
+	float: left;
+	margin-left: 20px;
+}
+
+.detail1 {
+	width: 25%;
+	float: left;
+	margin-left: 10px;
+}
+
+.detail2 {
+	width: 25%;
+	float: left;
+	margin-left: 10px;
+}
+
+.searchKeywordWrap {
+	width: 50%;
+	height: 40px;
+	float: left;
+}
+
+.searchKeyword {
+	width: 40%%;
+	float: left;
+}
+
+.searchInput {
+	width: 100px;
+	text-align: center;
+}
+
+.searchButtonWrap {
+	width: 15%;
+	float: left;
+	margin-left: 5px;
+}
+/* ---------------------------------------------- */
+
+
+/* 리스트 헤더 */
+.listHeader {
+	width: 100%;
+	height: 45px;
+	border-top: 1px solid #bcbcbc;
+	border-bottom: 1px solid #bcbcbc;
+	padding-top: 10px;
+	font-size: 13px;
+}
+
+.listHeaderName {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listHeaderGender {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listHeaderBirth {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listHeaderSummary {
+	width: 55%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listHeaderDate {
+	width: 15%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+
+/* ---------------------------------------------- */
+
+
+/* 리스트 출력 */
+.wrapListOut {
+	width: 100%;
+	height: 45px;
+	border-bottom: 1px solid #bcbcbc;
+	padding-top: 10px;
+	font-size: 13px;
+	
+}
+
+.listOutName {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listOutGender {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listOutBirth {
+	width: 10%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+.listOutSummary {
+	width: 55%;
+	height: 30px;
+	float: left;
+	text-align: left;
+	padding-left: 60px;
+}
+
+.listOutDate {
+	width: 15%;
+	height: 30px;
+	float: left;
+	text-align: center;
+}
+
+
+/* ---------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

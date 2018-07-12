@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		">
+
+	<!-- Spring MVC 패턴의 @Controller 어노테이션을 활성화한다. -->
+	<mvc:annotation-driven />
+
+	<!-- / 매핑에서 정적 리소스(html, css, js등)를 처리할수있도록 설정  -->
+	<mvc:default-servlet-handler />
+	
+	<!-- 아래의 base-pakage 에 있는 모든 패키지의 파일에 어노테이션을 스캔하여 빈으로 등록 -->
+	<context:component-scan base-package="com.spring" />
+	
+	<!-- 트랜잭션 AOP -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="controllerOperation" expression="execution(public * com.spring..*Controller.*(..))"/>
+	</aop:config>
+		
+	<!-- mapping으로 들어온 요청에 대해 location으로 mapping 시켜준다. -->
+	<!-- css, js, img 파일을 이 경로에 저장한다. -->
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Interceptor 설정 --> 
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 인터셉터 적용할 URL -->
+			<mvc:mapping path="/resume_myResume"/>
+			<mvc:mapping path="/resume_myResume/do"/>
+			<mvc:mapping path="/resume_create.action"/>
+			<mvc:mapping path="/resume_list"/>
+			<mvc:mapping path="/resume_listAjax"/>
+			<mvc:mapping path="/resume_article*"/>
+			<mvc:mapping path="/resume_mail"/>
+			<mvc:mapping path="/resume_mail/do"/>
+			<mvc:mapping path="/logout"/>
+			
+			<bean class="com.spring.member.LoginCheckInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 파일 업로드 -->
+    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- 자바파일이 UTF-8로 저장된 경우 한글파일명이 깨지지 않게하기 위해 -->
+         <property name="defaultEncoding" value="utf-8"/>
+         <property name="maxUploadSize" value="10485760" />
+    </bean>
+    
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	
+	<!-- 타일즈 환경 설정 -->
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+       <property name="definitions">
+           <list>
+               <value>/WEB-INF/config/tiles-defs.xml</value>
+           </list>
+       </property>
+    </bean>
+
+	<!-- viewResolver 설정. jsp와 name을 mapping 시켜준다. -->
+	<bean id="tilesViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="1" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="viewNames" value="/*" />
+	</bean>	
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="order" value="2" />
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	<!-- gmail -->
+    <bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="username" value="skay90000@gmail.com" />
+        <property name="password" value="tmqrhks1" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.auth">true</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="email" class="com.spring.mail.Mail">
+    </bean>
+    <bean id="emailSender" class="com.spring.mail.MailSender">
+    </bean>
+
+</beans>

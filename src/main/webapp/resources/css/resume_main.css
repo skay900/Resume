@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.wrapContainer_main {
+	width: 99%;
+	height: 775px;
+	margin: 10px 10px;
+	padding-top: 170px;
+}
+
+.container_main {
+	width: 20%;
+	height: 62%;
+	margin: 0px auto;
+}
+
+#zoomIn img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+#zoomIn:hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
